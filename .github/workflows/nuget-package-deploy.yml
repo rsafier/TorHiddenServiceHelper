@@ -1,0 +1,32 @@
+name: Deploy Nuget Package
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 6.0.100
+    - name: Restore dependencies
+      run: |
+        cd TorHiddenServiceHelper
+        dotnet restore
+    - name: Build
+      run: |
+        cd TorHiddenServiceHelper
+        dotnet build --no-restore -c Release
+    - name: Pack and Push NuGet Package
+      run: |
+        cd TorHiddenServiceHelper
+        dotnet pack --configuration Release
+        cd bin/Release/
+        package=$(ls TorHiddenServiceHelper.*.nupkg)
+        dotnet nuget push $package  --api-key ${{ secrets.NUGET }} --source https://api.nuget.org/v3/index.json
