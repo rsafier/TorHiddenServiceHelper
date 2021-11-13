@@ -1,0 +1,25 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>net5.0;net6.0;</TargetFrameworks>
+	  <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+	  <PackageProjectUrl>https://github.com/rsafier/TorHiddenServiceHelper</PackageProjectUrl>
+	  <PackageId>TorHiddenServiceHelper</PackageId>
+	  <Version>0.1.$([System.DateTime]::UtcNow.ToString(MMdd)).$([System.DateTime]::UtcNow.ToString(HHmm))</Version>
+	  <Authors>Richard Safier</Authors>
+	  <PackageDescription>Tor Hidden Service Helper - A .NET Core Hosted Service</PackageDescription>
+	  <RepositoryUrl>https://github.com/rsafier/TorHiddenServiceHelper</RepositoryUrl>
+	  <PackageLicenseExpression>MIT</PackageLicenseExpression>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="6.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="6.0.0" />
+	  <PackageReference Include="Curve25519.NetCore" Version="1.0.0" />
+	  <PackageReference Include="Nito.AsyncEx.Coordination" Version="5.1.2" />
+	  <PackageReference Include="ServiceStack.HttpClient" Version="5.12.0" />
+	  <PackageReference Include="SimpleBase" Version="3.1.0" />
+	  <PackageReference Include="ServiceStack.Text" Version="5.12.0" />
+  </ItemGroup>
+
+</Project>
